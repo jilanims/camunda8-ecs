@@ -242,6 +242,20 @@ curl -i -X POST "http://localhost:8080/v2/decision-definitions/evaluation" \
 
 ---
 
+## Postman Collection
+
+You can also test these APIs using Postman. The repository includes:
+- **Collection**: `Camunda_8.9_REST_API.postman_collection.json`
+- **Environment**: `Camunda_Local.postman_environment.json`
+
+### Import Instructions
+1. Open Postman.
+2. Click **Import** and select both files.
+3. Select the **Camunda Local** environment in the top-right corner.
+4. All requests are pre-configured with Basic Auth using `{{username}}` and `{{password}}`.
+
+---
+
 ## DMN Shell Scripts
 
 | Script | Command |
