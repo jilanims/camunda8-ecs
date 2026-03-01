@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="loan-decision" name="Loan Decision" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="loan-approval" name="Loan Approval">
+    <decisionTable id="decisionTable_1" hitPolicy="FIRST">
+      <input id="input_1" label="Credit Score">
+        <inputExpression id="inputExpression_1" typeRef="integer">
+          <text>creditScore</text>
+        </inputExpression>
+      </input>
+      <input id="input_2" label="Loan Amount">
+        <inputExpression id="inputExpression_2" typeRef="integer">
+          <text>loanAmount</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Decision" name="decision" typeRef="string"/>
+      <output id="output_2" label="Reason" name="reason" typeRef="string"/>
+      <rule id="rule_1">
+        <inputEntry id="inputEntry_1"><text>&gt;= 750</text></inputEntry>
+        <inputEntry id="inputEntry_2"><text>&lt;= 50000</text></inputEntry>
+        <outputEntry id="outputEntry_1"><text>"Approved"</text></outputEntry>
+        <outputEntry id="outputEntry_2"><text>"Excellent credit, low amount"</text></outputEntry>
+      </rule>
+      <rule id="rule_2">
+        <inputEntry id="inputEntry_3"><text>&gt;= 750</text></inputEntry>
+        <inputEntry id="inputEntry_4"><text>&gt; 50000</text></inputEntry>
+        <outputEntry id="outputEntry_3"><text>"Approved"</text></outputEntry>
+        <outputEntry id="outputEntry_4"><text>"Excellent credit, high amount approved"</text></outputEntry>
+      </rule>
+      <rule id="rule_3">
+        <inputEntry id="inputEntry_5"><text>[600..749]</text></inputEntry>
+        <inputEntry id="inputEntry_6"><text>&lt;= 30000</text></inputEntry>
+        <outputEntry id="outputEntry_5"><text>"Approved"</text></outputEntry>
+        <outputEntry id="outputEntry_6"><text>"Good credit, acceptable amount"</text></outputEntry>
+      </rule>
+      <rule id="rule_4">
+        <inputEntry id="inputEntry_7"><text>[600..749]</text></inputEntry>
+        <inputEntry id="inputEntry_8"><text>&gt; 30000</text></inputEntry>
+        <outputEntry id="outputEntry_7"><text>"Review"</text></outputEntry>
+        <outputEntry id="outputEntry_8"><text>"Good credit but high amount - needs review"</text></outputEntry>
+      </rule>
+      <rule id="rule_5">
+        <inputEntry id="inputEntry_9"><text>&lt; 600</text></inputEntry>
+        <inputEntry id="inputEntry_10"><text>-</text></inputEntry>
+        <outputEntry id="outputEntry_9"><text>"Rejected"</text></outputEntry>
+        <outputEntry id="outputEntry_10"><text>"Credit score too low"</text></outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

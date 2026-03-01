@@ -1,0 +1,8 @@
+.DS_Store
+.idea/
+.vscode/
+node_modules/
+dist/
+build/
+*.log
+# Don't ignore scripts or bpmn/dmn as they are core to this lab
