@@ -1,7 +1,9 @@
 #!/bin/bash
-# get-latest-instance-key.sh
-# Get the most recently started process instance key for a given processDefinitionId
-# Usage: ./get-latest-instance-key.sh [processDefinitionId]
+# get-latest-instance-key.sh - Get the most recently started process instance key
+#
+# Queries the /v2/process-instances/search endpoint sorted by startDate descending.
+#
+# Usage: ./scripts/get-latest-instance-key.sh [processDefinitionId]
 
 PROCESS_DEF_ID=${1:-"feel-test-process"}
 
@@ -29,5 +31,4 @@ print(f'processInstanceKey : {inst[\"processInstanceKey\"]}')
 print(f'processDefinitionId: {inst[\"processDefinitionId\"]}')
 print(f'state              : {inst[\"state\"]}')
 print(f'startDate          : {inst[\"startDate\"]}')
-print(f'endDate            : {inst.get(\"endDate\", \"N/A\")}')
 "

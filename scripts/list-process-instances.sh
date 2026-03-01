@@ -1,6 +1,12 @@
 #!/bin/bash
-# list-process-instances.sh
-# Get all process instances (optionally filter by state: ACTIVE, COMPLETED, CANCELED)
+# list-process-instances.sh - Lists process instances with optional state filtering
+#
+# This script queries the /v2/process-instances/search endpoint.
+# You can filter by state (ACTIVE, COMPLETED, CANCELED, INCIDENT).
+#
+# Usage: ./scripts/list-process-instances.sh [STATE]
+# Example: ./scripts/list-process-instances.sh ACTIVE
+
 STATE=${1:-""}
 
 if [ -n "$STATE" ]; then
