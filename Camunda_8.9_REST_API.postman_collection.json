@@ -1,0 +1,305 @@
+{
+	"info": {
+		"_postman_id": "c89-rest-api-lab",
+		"name": "Camunda 8.9 REST API Lab",
+		"description": "Postman collection for Camunda 8.9.0-alpha4 REST API (V2). Covers Deployment, Process Instances, User Tasks (Jobs), and DMN Evaluation.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Deployments",
+			"item": [
+				{
+					"name": "Deploy BPMN/DMN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "resources",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/deployments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"deployments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Process Definitions",
+			"item": [
+				{
+					"name": "Search Process Definitions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/process-definitions/search",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"process-definitions",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Process Instances",
+			"item": [
+				{
+					"name": "Start Process Instance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"processDefinitionId\": \"feel-test-process\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/process-instances",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"process-instances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Process Instances",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filter\": {\n        \"state\": \"ACTIVE\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/process-instances/search",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"process-instances",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks & Jobs",
+			"item": [
+				{
+					"name": "Search User Task Jobs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filter\": {\n        \"type\": \"io.camunda.zeebe:userTask\",\n        \"state\": \"CREATED\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/jobs/search",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"jobs",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Complete Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"variables\": {}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/jobs/{{jobKey}}/completion",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"jobs",
+								"{{jobKey}}",
+								"completion"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Decision Requirements",
+			"item": [
+				{
+					"name": "Evaluate Decision",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"decisionDefinitionId\": \"loan-approval\",\n    \"variables\": {\n        \"creditScore\": 750,\n        \"loanAmount\": 25000\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/decision-definitions/evaluation",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"decision-definitions",
+								"evaluation"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Variables",
+			"item": [
+				{
+					"name": "Search Variables",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filter\": {\n        \"name\": \"businessKey\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/variables/search",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"variables",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jobKey",
+			"value": ""
+		}
+	]
+}
