@@ -1,7 +1,9 @@
 #!/bin/bash
-# evaluate-dmn.sh
-# Evaluate a DMN decision with given inputs
+# evaluate-dmn.sh - Evaluates a DMN decision with given inputs via REST API
 # Usage: ./evaluate-dmn.sh <decisionDefinitionId> <creditScore> <loanAmount>
+#
+# This script sends a POST request to the /v2/decision-definitions/evaluation endpoint
+# and parses the JSON response to show the summary of the decision result.
 #
 # Example:
 #   ./evaluate-dmn.sh loan-approval 720 25000
