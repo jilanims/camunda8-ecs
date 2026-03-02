@@ -242,6 +242,45 @@ curl -i -X POST "http://localhost:8080/v2/decision-definitions/evaluation" \
 
 ---
 
+---
+
+## Multitenancy (Tenant-Specific) Operations
+
+When multitenancy is enabled, use the `tenantId` field in your requests.
+
+### Deploy to Tenant
+```bash
+curl -X POST http://localhost:8080/v2/deployments \
+  -u demo:demo \
+  -F "resources=@/path/to/process.bpmn" \
+  -F "tenantId=waas"
+```
+
+### Start Instance in Tenant
+```bash
+curl -X POST http://localhost:8080/v2/process-instances \
+  -u demo:demo \
+  -H "Content-Type: application/json" \
+  -d '{
+    "processDefinitionId": "feel-test-process",
+    "tenantId": "waas"
+  }'
+```
+
+### Evaluate DMN in Tenant
+```bash
+curl -X POST "http://localhost:8080/v2/decision-definitions/evaluation" \
+  -u demo:demo \
+  -H "Content-Type: application/json" \
+  -d '{
+    "decisionDefinitionId": "loan-approval",
+    "tenantId": "waas",
+    "variables": { "creditScore": 750, "loanAmount": 25000 }
+  }'
+```
+
+---
+
 ## Postman Collection
 
 You can also test these APIs using Postman. The repository includes:

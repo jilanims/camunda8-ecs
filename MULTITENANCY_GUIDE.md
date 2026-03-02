@@ -15,6 +15,8 @@ A new folder [`waasscripts/`](file:///Users/jilanibajipatan/camunda8-ecs/waasscr
 2.  **`start-waas.sh`**: Starts a process instance specifically for the `waas` tenant.
 3.  **`list-tasks-waas.sh`**: Filters user tasks/jobs by `tenantId: "waas"`.
 4.  **`complete-task-waas.sh`**: Completes a task (tenant ID captured by unique jobKey).
+5.  **`deploy-dmn-waas.sh`**: Deploys DMN resources to the `waas` tenant.
+6.  **`evaluate-dmn-waas.sh`**: Evaluates a DMN decision for the `waas` tenant.
 
 ## Verification Results
 - **Tenant Creation**: Verified via `POST /v2/tenants/search` ✅
